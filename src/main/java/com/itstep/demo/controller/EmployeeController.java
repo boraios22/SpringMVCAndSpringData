@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itstep.demo.enity.Department;
 import com.itstep.demo.enity.Employee;
 import com.itstep.demo.enity.ParkingSpace;
 import com.itstep.demo.repo.IGenericRepo;
@@ -24,7 +25,10 @@ public class EmployeeController {
 	public void create () {
 		var emp = new Employee("Sokna", 500);
 		var parkSpace = new ParkingSpace("Location 1");
+		var department = new Department("Information Technology");
+		
 		emp.setParkingSpace(parkSpace);
+		emp.setDepartment(department);
 		
 		empRepo.save(emp);
 	}
@@ -45,7 +49,7 @@ public class EmployeeController {
 		var list = parkingRepo.findAll();
 		String temp = "";
 		for (var park : list) {
-			temp += park.getLocation() + " ";
+			temp += park.getEmployee().getName() + " ";
 		}
 		
 		return temp;

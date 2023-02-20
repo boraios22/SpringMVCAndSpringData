@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,6 +24,10 @@ public class Employee {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "pspace_id")
 	private ParkingSpace parkingSpace;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "dept_id")
+	private Department department;
 	
 	public Employee() {
 		
@@ -54,6 +59,12 @@ public class Employee {
 	}
 	public void setParkingSpace(ParkingSpace parkingSpace) {
 		this.parkingSpace = parkingSpace;
+	}
+	public Department getDepartment() {
+		return department;
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 	
 	

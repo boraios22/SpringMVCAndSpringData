@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +16,10 @@ public class ParkingSpace {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 	String location;
+	
+	@OneToOne(mappedBy = "parkingSpace")
+	Employee employee;
+	
 	public ParkingSpace() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -34,6 +39,12 @@ public class ParkingSpace {
 	}
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 	
 	
