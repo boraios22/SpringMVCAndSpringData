@@ -16,7 +16,7 @@ public class JdbcDemoController {
 	@Autowired
 	EmployeeJdbcRepo empRepo;
 	
-	@GetMapping(value="/emp/create")
+	@GetMapping(value="/empjdbc/create")
 	public String create() {
 		var emp = new Employee("Soknim", 2000);
 		empRepo.insert(emp);
@@ -24,7 +24,7 @@ public class JdbcDemoController {
 		return "Inserted successfully";
 	}
 	
-	@GetMapping(value="/emp/{id}")
+	@GetMapping(value="/empjdbc/{id}")
 	public String find(@PathVariable("id") int id) throws JsonProcessingException {
 		var emp = empRepo.findById(id);
 		var json = new ObjectMapper().writeValueAsString(emp);

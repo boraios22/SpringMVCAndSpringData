@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itstep.demo.enity.Employee;
-import com.itstep.demo.repo.EmployeeRepo;
+import com.itstep.demo.repo.IGenericRepo;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
-	EmployeeRepo empRepo;
+	IGenericRepo<Employee> empRepo;
 
 	@GetMapping(value = "/hello")
 	@ResponseBody
@@ -34,7 +34,7 @@ public class HomeController {
 	@GetMapping("/employee/{id}")
 	@ResponseBody
 	public String getEmplee(@PathVariable("id") int id) throws JsonProcessingException {
-		var emp = empRepo.find(id);
+		var emp = empRepo.findById(id);
 		
 		
 		var json = new ObjectMapper().writeValueAsString(emp);

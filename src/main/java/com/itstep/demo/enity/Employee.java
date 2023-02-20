@@ -1,10 +1,13 @@
 package com.itstep.demo.enity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +19,11 @@ public class Employee {
 	private int id;
 	private String name;
 	private int salary;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "pspace_id")
+	private ParkingSpace parkingSpace;
+	
 	public Employee() {
 		
 	}
@@ -40,6 +48,12 @@ public class Employee {
 	}
 	public void setSalary(int salary) {
 		this.salary = salary;
+	}
+	public ParkingSpace getParkingSpace() {
+		return parkingSpace;
+	}
+	public void setParkingSpace(ParkingSpace parkingSpace) {
+		this.parkingSpace = parkingSpace;
 	}
 	
 	
